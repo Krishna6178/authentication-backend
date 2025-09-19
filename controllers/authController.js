@@ -125,7 +125,7 @@ export const sendVerifyOTP = async (req,res) => {
     }
 }
 
-//Verifing the user
+//Verifying the user
 export const verifyEmail = async (req,res) => {
     const {userId, otp} = req.body;
     if(!userId || !otp){
@@ -156,7 +156,7 @@ export const verifyEmail = async (req,res) => {
     }
 }
 
-//Checking weather user was authenticated or not
+//Checking whether user was authenticated or not
 export const isAuthenticated = async (req,res) => {
     try{
         return res.json({success : true});
@@ -203,12 +203,10 @@ export const sendResetOTP = async (req, res) => {
 export const ResetPassword = async (req,res) => {
     const {email, otp, newPassword} = req.body;
     if(!email || !otp || !newPassword){
-        console.log("User not found")
         return res.json({success : false, message : "Email, OTP and New Password are required"});
     }
     try {
         const user = await userModel.findOne({email});
-        console.log("User not found")
         if(!user){
             return res.json({success : false, message : 'User not found'});
         }
